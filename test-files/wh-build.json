@@ -1,0 +1,29 @@
+{
+    "name": "wh-build",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "less-build": "lessc less/pages.less > static-content/css/pages.css | lessc less/editor.less > static-content/css/editor.css; lessc less/app.less > static-content/css/app.css",
+        "less-compress": "uglifycss static-content/css/pages.css > static-content/css/pages.min.css; uglifycss static-content/css/editor.css > static-content/css/editor.min.css; uglifycss static-content/css/app.css > static-content/css/app.min.css",
+        "client-js-compress": "uglifyjs static-content/js/pages.js -o static-content/js/pages.min.js -c --source-map url=static-content/js/pages.min.js.map; uglifyjs static-content/js/editor.js -o static-content/js/editor.min.js -c --source-map url=static-content/js/editor.min.js.map; uglifyjs static-content/js/app.js -o static-content/js/app.min.js -c --source-map url=static-content/js/app.min.js.map",
+        "client-js-build": "browserify client-js/pages.js > static-content/js/pages.js; browserify client-js/editor.js > static-content/js/editor.js; browserify client-js/app.js > static-content/js/app.js",
+        "dev-less-watch": "onchange 'less/*.less' -- npm run less-build",
+        "dev-js-watch": "onchange 'client-js/*.js' -- npm run client-js-build",
+        "bg": "parallelshell 'npm run dev-less-watch' 'npm run dev-js-watch'"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "filter-log": "0.0.3",
+        "jquery": "^1.12.4",
+        "tripartite": "^1.0.7"
+    },
+    "devDependencies": {
+        "browserify": "^14.4.0",
+        "less": "^2.7.2",
+        "onchange": "^3.2.1",
+        "parallelshell": "^3.0.1",
+        "uglify-js": "^3.0.24"
+    }
+}

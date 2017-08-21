@@ -1,0 +1,15 @@
+{
+  "name": "merge-package-deps-up",
+  "version": "1.0.0",
+  "description": "merges deps, dev deps, and scripts from one package.json into another",
+  "main": "merge-deps-up",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}
